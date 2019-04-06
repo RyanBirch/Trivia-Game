@@ -46,14 +46,14 @@ $(document).ready(function() {
 
 
   // questions will flip every 30 seconds
-  let timer = setInterval(timesUp, 1000 * 3)
+  let timer = setInterval(timesUp, 1000 * 5)
 
   // executes if the user doesn't answer in time
   function timesUp() {
     if (currentQ < 4) currentQ++
     else clearInterval(timer)
     clearScreen()
-    $('#alert').html('Time\'s Up')
+    $('#alert').html(`Time\'s Up! The correct answer was ${answers[currentQ].ansCorrect}`)
     setTimeout(nextQ, 1000 * 3)
   }
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
     } else {
       guessedWrong++
       clearScreen()
-      $('#alert').html('Wrong!')
+      $('#alert').html(`Wrong :( The correct answer was ${answers[currentQ].ansCorrect}`)
     }
   }
 
@@ -88,38 +88,46 @@ $(document).ready(function() {
     $('#answer-3').html('')
   }
 
+  function result() {
+    $('#alert').html(`You answered ${guessedRight} correctly out of ${questions.length}`)
+  }
+
 
 
   $('#answer-0').on('click', function() {
     userGuess = answers[currentQ].ansArr[0]
     checkAnswer()
-    if (currentQ < 4) currentQ++
-    setTimeout(nextQ, 1000 * 3)
-    clearInterval(timer)
+    if (currentQ < 4) {
+      currentQ++
+      setTimeout(nextQ, 1000 * 3)
+    } else setTimeout(result, 1000 * 3)
   })
 
   $('#answer-1').on('click', function() {
     userGuess = answers[currentQ].ansArr[1]
     checkAnswer()
-    if (currentQ < 4) currentQ++
-    setTimeout(nextQ, 1000 * 3)
-    clearInterval(timer)
+    if (currentQ < 4) {
+      currentQ++
+      setTimeout(nextQ, 1000 * 3)
+    } else setTimeout(result, 1000 * 3)
   })
 
   $('#answer-2').on('click', function() {
     userGuess = answers[currentQ].ansArr[2]
     checkAnswer()
-    if (currentQ < 4) currentQ++
-    setTimeout(nextQ, 1000 * 3)
-    clearInterval(timer)
+    if (currentQ < 4) {
+      currentQ++
+      setTimeout(nextQ, 1000 * 3)
+    } else setTimeout(result, 1000 * 3)
   })
 
   $('#answer-3').on('click', function() {
     userGuess = answers[currentQ].ansArr[3]
     checkAnswer()
-    if (currentQ < 4) currentQ++
-    setTimeout(nextQ, 1000 * 3)
-    clearInterval(timer)
+    if (currentQ < 4) {
+      currentQ++
+      setTimeout(nextQ, 1000 * 3)
+    } else setTimeout(result, 1000 * 3)
   })
 
 
