@@ -43,15 +43,28 @@ $(document).ready(function() {
 
 
   // questions will flip every 30 seconds
-  let tq = setInterval(timedQ, 1000 * 2)
+  let timer = setInterval(timesUp, 1000 * 2)
 
   // executes if the user doesn't answer in time
-  function timedQ() {
+  function timesUp() {
     if (currentQ < 4) currentQ++
-    else clearInterval(tq)
+    else clearInterval(timer)
     nextQ()
-    $('alert').html('Time\'s Up')
-    console.log(currentQ)
+    $('#alert').html('Time\'s Up')
+  }
+
+  // appears between questions to indicate right and wrong answers
+  function betweenQ() {
+    if (userGuess === answers[currentQ].ansCorrect) {
+      clearScreen()
+      $('#alert').html('Correct!')
+    } else if (userGuess !== answers[currentQ].ansCorrect) {
+      clearScreen()
+      $('#alert').html('Wrong :(')
+    } else {
+      clearScreen()
+      $('#alert').html('Time\s Up!')
+    }
   }
 
   // checks if  answer is correct
@@ -70,7 +83,15 @@ $(document).ready(function() {
     $('#answer-1').html(answers[currentQ].ansArr[1])
     $('#answer-2').html(answers[currentQ].ansArr[2])
     $('#answer-3').html(answers[currentQ].ansArr[3])
-    }
+  }
+
+  function clearScreen() {
+    $('#question').html('')
+    $('#answer-0').html('')
+    $('#answer-1').html('')
+    $('#answer-2').html('')
+    $('#answer-3').html('')
+  }
 
 
 
@@ -79,8 +100,8 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) currentQ++
     nextQ()
-    clearInterval(tq)
-    console.log(currentQ)
+    clearInterval(timer)
+    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-1').on('click', function() {
@@ -88,8 +109,8 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) currentQ++
     nextQ()
-    clearInterval(tq)
-    console.log(currentQ)
+    clearInterval(timer)
+    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-2').on('click', function() {
@@ -97,8 +118,8 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) currentQ++
     nextQ()
-    clearInterval(tq)
-    console.log(currentQ)
+    clearInterval(timer)
+    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-3').on('click', function() {
@@ -106,8 +127,8 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) currentQ++
     nextQ()
-    clearInterval(tq)
-    console.log(currentQ)
+    clearInterval(timer)
+    setTimeout(betweenQ, 1000 * 3)
   })
 
 
