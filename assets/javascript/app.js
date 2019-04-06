@@ -32,8 +32,11 @@ $(document).ready(function() {
   ]
 
   // initial game state
-  let userGuess
-  let currentQ = 0
+  let userGuess,
+      currentQ = 0,
+      guessedRight = 0, 
+      guessedWrong = 0
+
 
   $('#question').html(questions[0])
   $('#answer-0').html(answers[currentQ].ansArr[0])
@@ -43,35 +46,26 @@ $(document).ready(function() {
 
 
   // questions will flip every 30 seconds
-  let timer = setInterval(timesUp, 1000 * 2)
+  let timer = setInterval(timesUp, 1000 * 3)
 
   // executes if the user doesn't answer in time
   function timesUp() {
     if (currentQ < 4) currentQ++
     else clearInterval(timer)
-    nextQ()
+    clearScreen()
     $('#alert').html('Time\'s Up')
-  }
-
-  // appears between questions to indicate right and wrong answers
-  function betweenQ() {
-    if (userGuess === answers[currentQ].ansCorrect) {
-      clearScreen()
-      $('#alert').html('Correct!')
-    } else if (userGuess !== answers[currentQ].ansCorrect) {
-      clearScreen()
-      $('#alert').html('Wrong :(')
-    } else {
-      clearScreen()
-      $('#alert').html('Time\s Up!')
-    }
+    setTimeout(nextQ, 1000 * 3)
   }
 
   // checks if  answer is correct
   function checkAnswer() {
     if (userGuess === answers[currentQ].ansCorrect) {
+      guessedRight++
+      clearScreen()
       $('#alert').html('Correct!')
     } else {
+      guessedWrong++
+      clearScreen()
       $('#alert').html('Wrong!')
     }
   }
@@ -83,6 +77,7 @@ $(document).ready(function() {
     $('#answer-1').html(answers[currentQ].ansArr[1])
     $('#answer-2').html(answers[currentQ].ansArr[2])
     $('#answer-3').html(answers[currentQ].ansArr[3])
+    $('#alert').html('')
   }
 
   function clearScreen() {
@@ -99,36 +94,32 @@ $(document).ready(function() {
     userGuess = answers[currentQ].ansArr[0]
     checkAnswer()
     if (currentQ < 4) currentQ++
-    nextQ()
+    setTimeout(nextQ, 1000 * 3)
     clearInterval(timer)
-    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-1').on('click', function() {
     userGuess = answers[currentQ].ansArr[1]
     checkAnswer()
     if (currentQ < 4) currentQ++
-    nextQ()
+    setTimeout(nextQ, 1000 * 3)
     clearInterval(timer)
-    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-2').on('click', function() {
     userGuess = answers[currentQ].ansArr[2]
     checkAnswer()
     if (currentQ < 4) currentQ++
-    nextQ()
+    setTimeout(nextQ, 1000 * 3)
     clearInterval(timer)
-    setTimeout(betweenQ, 1000 * 3)
   })
 
   $('#answer-3').on('click', function() {
     userGuess = answers[currentQ].ansArr[3]
     checkAnswer()
     if (currentQ < 4) currentQ++
-    nextQ()
+    setTimeout(nextQ, 1000 * 3)
     clearInterval(timer)
-    setTimeout(betweenQ, 1000 * 3)
   })
 
 
