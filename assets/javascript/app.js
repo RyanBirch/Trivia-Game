@@ -43,7 +43,7 @@ $(document).ready(function() {
     guessedRight = 0,
     guessedWrong = 0
 
-    $('#start-game').html('')
+    $('#start-game').hide()
     $('#question').html(questions[0])
     $('#answer-0').html(answers[currentQ].ansArr[0])
     $('#answer-1').html(answers[currentQ].ansArr[1])
@@ -116,6 +116,9 @@ $(document).ready(function() {
       timer = setInterval(timesUp, 1000 * 5)
     } else {
       setTimeout(result, 1000 * 3)
+      clearInterval(timer)
+      clearScreen()
+      $('#start-game').show()
     }
   })
 
@@ -129,6 +132,9 @@ $(document).ready(function() {
       timer = setInterval(timesUp, 1000 * 5)
     } else {
       setTimeout(result, 1000 * 3)
+      clearInterval(timer)
+      clearScreen()
+      $('#start-game').show()
     }
   })
 
@@ -142,6 +148,9 @@ $(document).ready(function() {
       timer = setInterval(timesUp, 1000 * 5)
     } else {
       setTimeout(result, 1000 * 3)
+      clearInterval(timer)
+      clearScreen()
+      $('#start-game').show()
     }
   })
 
@@ -155,6 +164,9 @@ $(document).ready(function() {
       timer = setInterval(timesUp, 1000 * 5)
     } else {
       setTimeout(result, 1000 * 3)
+      clearInterval(timer)
+      clearScreen()
+      $('#start-game').show()
     }
   })
 
