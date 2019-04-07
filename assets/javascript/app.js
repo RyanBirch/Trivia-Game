@@ -32,21 +32,27 @@ $(document).ready(function() {
   ]
 
   // initial game state
-  let userGuess,
+  let userGuess, timer
       currentQ = 0,
-      guessedRight = 0, 
+      guessedRight = 0,
       guessedWrong = 0
 
 
-  $('#question').html(questions[0])
-  $('#answer-0').html(answers[currentQ].ansArr[0])
-  $('#answer-1').html(answers[currentQ].ansArr[1])
-  $('#answer-2').html(answers[currentQ].ansArr[2])
-  $('#answer-3').html(answers[currentQ].ansArr[3])
+  function startGame() {
+    currentQ = 0,
+    guessedRight = 0,
+    guessedWrong = 0
 
+    $('#start-game').html('')
+    $('#question').html(questions[0])
+    $('#answer-0').html(answers[currentQ].ansArr[0])
+    $('#answer-1').html(answers[currentQ].ansArr[1])
+    $('#answer-2').html(answers[currentQ].ansArr[2])
+    $('#answer-3').html(answers[currentQ].ansArr[3])
 
-  // questions will flip every 30 seconds
-  let timer = setInterval(timesUp, 1000 * 5)
+    // questions will flip every 30 seconds
+    timer = setInterval(timesUp, 1000 * 5)
+  }
 
   // executes if the user doesn't answer in time
   function timesUp() {
@@ -54,7 +60,9 @@ $(document).ready(function() {
     else clearInterval(timer)
     clearScreen()
     $('#alert').html(`Time\'s Up! The correct answer was ${answers[currentQ].ansCorrect}`)
+    clearInterval(timer)
     setTimeout(nextQ, 1000 * 3)
+    timer = setInterval(timesUp, 1000 * 5)
   }
 
   // checks if  answer is correct
@@ -94,13 +102,21 @@ $(document).ready(function() {
 
 
 
+  $('#start-game').on('click', function() {
+    startGame()
+  })
+
   $('#answer-0').on('click', function() {
     userGuess = answers[currentQ].ansArr[0]
     checkAnswer()
     if (currentQ < 4) {
       currentQ++
+      clearInterval(timer)
       setTimeout(nextQ, 1000 * 3)
-    } else setTimeout(result, 1000 * 3)
+      timer = setInterval(timesUp, 1000 * 5)
+    } else {
+      setTimeout(result, 1000 * 3)
+    }
   })
 
   $('#answer-1').on('click', function() {
@@ -108,8 +124,12 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) {
       currentQ++
+      clearInterval(timer)
       setTimeout(nextQ, 1000 * 3)
-    } else setTimeout(result, 1000 * 3)
+      timer = setInterval(timesUp, 1000 * 5)
+    } else {
+      setTimeout(result, 1000 * 3)
+    }
   })
 
   $('#answer-2').on('click', function() {
@@ -117,8 +137,12 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) {
       currentQ++
+      clearInterval(timer)
       setTimeout(nextQ, 1000 * 3)
-    } else setTimeout(result, 1000 * 3)
+      timer = setInterval(timesUp, 1000 * 5)
+    } else {
+      setTimeout(result, 1000 * 3)
+    }
   })
 
   $('#answer-3').on('click', function() {
@@ -126,8 +150,12 @@ $(document).ready(function() {
     checkAnswer()
     if (currentQ < 4) {
       currentQ++
+      clearInterval(timer)
       setTimeout(nextQ, 1000 * 3)
-    } else setTimeout(result, 1000 * 3)
+      timer = setInterval(timesUp, 1000 * 5)
+    } else {
+      setTimeout(result, 1000 * 3)
+    }
   })
 
 
