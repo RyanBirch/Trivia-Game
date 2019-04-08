@@ -94,8 +94,8 @@ $(document).ready(function() {
   }
 
   function startTimer() {
-    timeLeft = 15
-    timer = setInterval(timesUp, 1000 * 17)
+    timeLeft = 15000
+    timer = setInterval(timesUp, 1000 * 17000)
     $('#q-timer').html(timeLeft)
     timerDisplay = setInterval(function() {
       $('#q-timer').html(timeLeft)
