@@ -32,7 +32,7 @@ $(document).ready(function() {
   ]
 
   // initial game state
-  let userGuess, timer, timeLeft = 15, currentQ, guessedRight, guessedWrong
+  let userGuess, timer, timerDisplay, timeLeft = 15, currentQ, guessedRight, guessedWrong
 
 
   function startGame() {
@@ -65,10 +65,10 @@ $(document).ready(function() {
     $('#alert').html(`Time\'s Up! The correct answer was ${answers[currentQ].ansCorrect}`)
     if (currentQ < 4) {
       currentQ++
-      clearInterval(timer)
+      // clearInterval(timer)
       setTimeout(function() {
         nextQ()
-        timer = setInterval(timesUp, 1000 * 15)
+        // timer = setInterval(timesUp, 1000 * 15)
       }, 1000 * 3)
     } else {
       clearInterval(timer)
@@ -104,7 +104,7 @@ $(document).ready(function() {
   function startTimer() {
     timeLeft = 15
     timer = setInterval(timesUp, 1000 * 15)
-    setInterval(function() {
+    timerDisplay = setInterval(function() {
       $('#q-timer').html(timeLeft)
       timeLeft--
     }, 1000)
@@ -112,18 +112,19 @@ $(document).ready(function() {
 
   function stopTimer() {
     clearInterval(timer)
+    clearInterval(timerDisplay)
     $('#q-timer').html('')
   }
 
   function clearTimer() {
     if (currentQ < 4) {
       currentQ++
-      clearInterval(timer)
+      // clearInterval(timer)
       setTimeout(nextQ, 1000 * 3)
-      timer = setInterval(timesUp, 1000 * 15)
+      // timer = setInterval(timesUp, 1000 * 15)
     } else {
       setTimeout(result, 1000 * 3)
-      clearInterval(timer)
+      // clearInterval(timer)
       clearScreen()
       $('#start-game').show()
     }
