@@ -49,6 +49,7 @@ $(document).ready(function() {
     $('#answer-1').html(answers[currentQ].ansArr[1])
     $('#answer-2').html(answers[currentQ].ansArr[2])
     $('#answer-3').html(answers[currentQ].ansArr[3])
+    $('#alert').html('')
 
     // questions will flip every 30 seconds
     timer = setInterval(timesUp, 1000 * 5)
@@ -56,13 +57,20 @@ $(document).ready(function() {
 
   // executes if the user doesn't answer in time
   function timesUp() {
-    if (currentQ < 4) currentQ++
-    else clearInterval(timer)
     clearScreen()
     $('#alert').html(`Time\'s Up! The correct answer was ${answers[currentQ].ansCorrect}`)
-    clearInterval(timer)
-    setTimeout(nextQ, 1000 * 3)
-    timer = setInterval(timesUp, 1000 * 5)
+    if (currentQ < 4) {
+      currentQ++
+      clearInterval(timer)
+      setTimeout(function() {
+        nextQ()
+        timer = setInterval(timesUp, 1000 * 5)
+      }, 1000 * 3)
+    } else {
+      clearInterval(timer)
+      setTimeout(result, 1000 * 3)
+      $('#start-game').show()
+    }
   }
 
   // checks if  answer is correct
@@ -88,6 +96,20 @@ $(document).ready(function() {
     $('#alert').html('')
   }
 
+  function clearTimer() {
+    if (currentQ < 4) {
+      currentQ++
+      clearInterval(timer)
+      setTimeout(nextQ, 1000 * 3)
+      timer = setInterval(timesUp, 1000 * 5)
+    } else {
+      setTimeout(result, 1000 * 3)
+      clearInterval(timer)
+      clearScreen()
+      $('#start-game').show()
+    }
+  }
+
   function clearScreen() {
     $('#question').html('')
     $('#answer-0').html('')
@@ -106,69 +128,37 @@ $(document).ready(function() {
     startGame()
   })
 
+  $('.answer-btn').on('click', function() {
+    userGuess = answers[currentQ].ansArr[parseInt($(this).attr('value'))]
+    checkAnswer()
+    clearTimer()
+  })
+
+  /*
   $('#answer-0').on('click', function() {
     userGuess = answers[currentQ].ansArr[0]
     checkAnswer()
-    if (currentQ < 4) {
-      currentQ++
-      clearInterval(timer)
-      setTimeout(nextQ, 1000 * 3)
-      timer = setInterval(timesUp, 1000 * 5)
-    } else {
-      setTimeout(result, 1000 * 3)
-      clearInterval(timer)
-      clearScreen()
-      $('#start-game').show()
-    }
+    clearTimer()
   })
 
   $('#answer-1').on('click', function() {
     userGuess = answers[currentQ].ansArr[1]
     checkAnswer()
-    if (currentQ < 4) {
-      currentQ++
-      clearInterval(timer)
-      setTimeout(nextQ, 1000 * 3)
-      timer = setInterval(timesUp, 1000 * 5)
-    } else {
-      setTimeout(result, 1000 * 3)
-      clearInterval(timer)
-      clearScreen()
-      $('#start-game').show()
-    }
+    clearTimer()
   })
 
   $('#answer-2').on('click', function() {
     userGuess = answers[currentQ].ansArr[2]
     checkAnswer()
-    if (currentQ < 4) {
-      currentQ++
-      clearInterval(timer)
-      setTimeout(nextQ, 1000 * 3)
-      timer = setInterval(timesUp, 1000 * 5)
-    } else {
-      setTimeout(result, 1000 * 3)
-      clearInterval(timer)
-      clearScreen()
-      $('#start-game').show()
-    }
+    clearTimer()
   })
 
   $('#answer-3').on('click', function() {
     userGuess = answers[currentQ].ansArr[3]
     checkAnswer()
-    if (currentQ < 4) {
-      currentQ++
-      clearInterval(timer)
-      setTimeout(nextQ, 1000 * 3)
-      timer = setInterval(timesUp, 1000 * 5)
-    } else {
-      setTimeout(result, 1000 * 3)
-      clearInterval(timer)
-      clearScreen()
-      $('#start-game').show()
-    }
+    clearTimer()
   })
+  */
 
 
 })
