@@ -21,16 +21,37 @@ html::after {
 
 .title {
   margin: 3% auto 3% auto;
-  width: 50%;
+  width: 80%;
   text-align: center;
+  font-family: 'Courgette', cursive;
+  font-size: 4em;
+}
+
+.red {
+  color: #d23232;
+  text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
+}
+
+.white {
+  color: #fbfbfb;
+  text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
+}
+
+.blue {
+  color: #0073c6;
+  text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
 }
 
 #start-game {
   display: block;
   width: 25%;
   margin: 10% auto 0 auto;
+  padding: 2.5%;
   font-size: 3em;
   cursor: pointer;
+  color: #0073c6;
+  background-color: #fbfbfb;
+  border: 5px solid #d23232;
 }
 
 #q-timer {
@@ -44,18 +65,28 @@ html::after {
   width: 75%;
   margin: 3% auto 0 auto;
   text-align: center;
+  font-family: 'Old Standard TT', serif;
 }
 
 .answer-btn {
   cursor: pointer;
   display: block;
   width: 25%;
-  margin: 2.5% auto 0 30%;
+  margin: 2.5% auto 2% 30%;
+  padding-left: 0.5em;
   line-height: 2em;
+  font-family: 'Old Standard TT', serif;
+}
+
+.answer-btn:hover {
+  color: #2094e8;
+  background-color: #fbfbfb;
+  border: 1px solid #d23232;
 }
 
 #alert {
   margin: 10% auto 0 auto;
   width: 50%;
   text-align: center;
+  font-family: 'Playfair Display SC', serif;
 }
