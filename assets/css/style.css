@@ -92,3 +92,7 @@ html::after {
   text-align: center;
   font-family: 'Playfair Display SC', serif;
 }
+
+#image {
+  text-align: center;
+}

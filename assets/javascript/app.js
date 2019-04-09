@@ -31,6 +31,14 @@ $(document).ready(function() {
     }
   ]
 
+  let images = [
+    'assets/images/george_washington.jpg',
+    'assets/images/thirteen_colonies.jpg',
+    'assets/images/britain.jpg',
+    'assets/images/declaration.jpg',
+    'assets/images/france.jpg'
+  ]
+
   // initial game state
   let userGuess, timer, timerDisplay, timeLeft = 15, currentQ, guessedRight, guessedWrong
 
@@ -90,6 +98,7 @@ $(document).ready(function() {
     $('#answer-2').html(answers[currentQ].ansArr[2])
     $('#answer-3').html(answers[currentQ].ansArr[3])
     $('#alert').html('')
+    $('#image').html('')
     startTimer()
   }
 
@@ -114,9 +123,11 @@ $(document).ready(function() {
       currentQ++
       setTimeout(nextQ, 1000 * 3)
     } else {
-      setTimeout(result, 1000 * 3)
+      setTimeout(function () {
+        result()
+        $('#start-game').show()
+      }, 1000 * 3)
       clearScreen()
-      $('#start-game').show()
     }
   }
 
@@ -128,8 +139,15 @@ $(document).ready(function() {
     $('#answer-3').html('')
   }
 
+  function showImage() {
+    $('#image').html('')
+    $('<img>').attr('src', images[currentQ]).width('20%').height('20%').appendTo($('#image'))
+    // $('#image').html("<img src=" + images[currentQ] + ">")
+  }
+
   function result() {
     $('#alert').html(`You answered ${guessedRight} correctly out of ${questions.length}`)
+    $('#image').html('')
   }
 
 
@@ -141,6 +159,7 @@ $(document).ready(function() {
   $('.answer-btn').on('click', function() {
     userGuess = answers[currentQ].ansArr[parseInt($(this).attr('value'))]
     checkAnswer()
+    showImage()
     stopTimer()
     clearTimer()
   })
