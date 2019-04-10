@@ -64,6 +64,7 @@ $(document).ready(function() {
   function timesUp() {
     stopTimer()
     clearScreen()
+    showImage()
     $('#alert').html(`Time\'s Up! The correct answer was ${answers[currentQ].ansCorrect}`)
     if (currentQ < 4) {
       currentQ++
@@ -103,8 +104,8 @@ $(document).ready(function() {
   }
 
   function startTimer() {
-    timeLeft = 15000
-    timer = setInterval(timesUp, 1000 * 17000)
+    timeLeft = 15
+    timer = setInterval(timesUp, 1000 * 17)
     $('#q-timer').html(timeLeft)
     timerDisplay = setInterval(function() {
       $('#q-timer').html(timeLeft)
@@ -141,8 +142,7 @@ $(document).ready(function() {
 
   function showImage() {
     $('#image').html('')
-    $('<img>').attr('src', images[currentQ]).width('20%').height('20%').appendTo($('#image'))
-    // $('#image').html("<img src=" + images[currentQ] + ">")
+    $('<img>').attr('src', images[currentQ]).width('25%').height('25%').appendTo($('#image'))
   }
 
   function result() {
