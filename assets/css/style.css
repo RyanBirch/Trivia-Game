@@ -45,11 +45,10 @@ html::after {
 #start-game {
   display: block;
   position: absolute;
-  top: 3em;
+  margin-top: 2em;
   left: 50%;
   margin-left: -12.5%;
   width: 25%;
-  /* margin: 5% auto 0 auto; */
   padding: 2.5%;
   font-size: 5vw;
   cursor: pointer;
@@ -90,7 +89,6 @@ html::after {
 }
 
 #alert {
-  /* font-size: 3em; */
   font-size: 3.5vw;
   margin: -3.25em auto 0 auto;
   width: 80%;
@@ -108,4 +106,15 @@ html::after {
     width: 60%;
     margin: 2.5% auto 2% auto;
   }
+}
+
+@media only screen and (max-width: 615px) {
+  .title { font-size: 7vh; }
+
+  #alert {
+    font-size: 2em;
+    margin-top: -1.75em;
+  }
+
+  #start-game { top: 8.5em;  }
 }

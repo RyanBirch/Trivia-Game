@@ -73,8 +73,10 @@ $(document).ready(function() {
       }, 1000 * 3)
     } else {
       clearInterval(timer)
-      setTimeout(result, 1000 * 3)
-      $('#start-game').show()
+      setTimeout(function () {
+        result()
+        $('#start-game').show()
+      }, 1000 * 3)
     }
   }
 
